@@ -185,10 +185,8 @@ The power numbers behave as V100 power should: a static floor around 55 W for la
 
 The V100 traces replay on the H100 model too; traces are instruction-level and the H100 config (132 SMs, 1980 MHz, 50 MB L2, HBM3) just runs them faster. This is a check that the Hopper model works, not a claim about real H100 performance on Volta-era code.
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/img/v100-vs-h100-dark.png">
-  <img alt="Left: cycles on the V100 model divided by cycles on the H100 model, per app, 1.07x to 1.43x. Right: AccelWattch average watts per app on both models; H100 is 14 to 20 W higher throughout." src="docs/img/v100-vs-h100-light.png" width="100%">
-</picture>
+<img alt="Left: cycles on the V100 model divided by cycles on the H100 model, per app, 1.07x to 1.43x. Right: AccelWattch average watts per app on both models; H100 is 14 to 20 W higher throughout." src="docs/img/v100-vs-h100-light.png#gh-light-mode-only" width="100%">
+<img alt="Left: cycles on the V100 model divided by cycles on the H100 model, per app, 1.07x to 1.43x. Right: AccelWattch average watts per app on both models; H100 is 14 to 20 W higher throughout." src="docs/img/v100-vs-h100-dark.png#gh-dark-mode-only" width="100%">
 
 | app | V100 cycles | H100 cycles | speedup | V100 avg W | H100 avg W |
 |---|---:|---:|---:|---:|---:|
@@ -213,17 +211,13 @@ The V100 traces replay on the H100 model too; traces are instruction-level and t
 
 **What happened on replay.** The simulator ran the first 10 kernels, the entire prefill pass, and then deadlocked on kernel 11.
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/img/llm-layer-kernel-strip-dark.png">
-  <img alt="A strip of 96 cells, one per kernel: the first 10 green (simulated), the 11th red (deadlocked), the remaining 85 grey (not reached)." src="docs/img/llm-layer-kernel-strip-light.png" width="100%">
-</picture>
+<img alt="A strip of 96 cells, one per kernel: the first 10 green (simulated), the 11th red (deadlocked), the remaining 85 grey (not reached)." src="docs/img/llm-layer-kernel-strip-light.png#gh-light-mode-only" width="100%">
+<img alt="A strip of 96 cells, one per kernel: the first 10 green (simulated), the 11th red (deadlocked), the remaining 85 grey (not reached)." src="docs/img/llm-layer-kernel-strip-dark.png#gh-dark-mode-only" width="100%">
 
 **Prefill pass, per kernel** (`H100-SASS-Accelwattch_SASS_SIM`):
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/img/llm-layer-kernels-dark.png">
-  <img alt="Left: simulated cycles for the 10 prefill kernels; FlashAttention-3 (14,954) and the gate/up GEMM (16,723) dominate. Right: AccelWattch average watts per kernel, 70 to 95 W, GEMMs highest." src="docs/img/llm-layer-kernels-light.png" width="100%">
-</picture>
+<img alt="Left: simulated cycles for the 10 prefill kernels; FlashAttention-3 (14,954) and the gate/up GEMM (16,723) dominate. Right: AccelWattch average watts per kernel, 70 to 95 W, GEMMs highest." src="docs/img/llm-layer-kernels-light.png#gh-light-mode-only" width="100%">
+<img alt="Left: simulated cycles for the 10 prefill kernels; FlashAttention-3 (14,954) and the gate/up GEMM (16,723) dominate. Right: AccelWattch average watts per kernel, 70 to 95 W, GEMMs highest." src="docs/img/llm-layer-kernels-dark.png#gh-dark-mode-only" width="100%">
 
 | # | kernel (vLLM / cuBLAS / CUTLASS) | role in the block | cycles | instructions | avg W |
 |--:|---|---|---:|---:|---:|
