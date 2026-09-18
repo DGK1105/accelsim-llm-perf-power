@@ -1,0 +1,176 @@
+INFO 09-17 22:17:14 [api_utils.py:273] non-default args: {'max_model_len': 2048, 'gpu_memory_utilization': 0.6, 'disable_log_stats': True, 'enforce_eager': True, 'model': 'Qwen/Qwen2.5-0.5B'}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING 09-17 22:17:14 [arg_utils.py:1678] The global random seed is set to 0. Since VLLM_ENABLE_V1_MULTIPROCESSING is set to False, this may affect the random state of the Python process that launched vLLM.
+INFO 09-17 22:17:14 [model.py:645] Resolved architecture: Qwen2ForCausalLM
+INFO 09-17 22:17:14 [model.py:1883] Using max model len 2048
+INFO 09-17 22:17:14 [scheduler.py:242] Chunked prefill is enabled with max_num_batched_tokens=16384.
+WARNING 09-17 22:17:14 [vllm.py:1194] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+WARNING 09-17 22:17:14 [vllm.py:1247] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+INFO 09-17 22:17:14 [kernel.py:306] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+INFO 09-17 22:17:14 [vllm.py:1426] Cudagraph is disabled under eager mode
+INFO 09-17 22:17:14 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+INFO 09-17 22:17:16 [core.py:121] Initializing a V1 LLM engine (v0.27.1) with config: model='Qwen/Qwen2.5-0.5B', speculative_config=None, tokenizer='Qwen/Qwen2.5-0.5B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, quantization_config=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=Qwen/Qwen2.5-0.5B, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [16384], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native']), enable_flashinfer_autotune=True, enable_cutedsl_warmup=True, enable_jit_warmup=True, enable_bf16x3_router_gemm=False, moe_backend='auto', linear_backend='auto')
+------------- NVBit (NVidia Binary Instrumentation Tool v1.8) Loaded --------------
+NVBit core environment variables (mostly for nvbit-devs):
+ACK_CTX_INIT_LIMITATION = 0 - if set, no warning will be printed for nvbit_at_ctx_init()
+            NVDISASM = nvdisasm - override default nvdisasm found in PATH
+            NOBANNER = 0 - if set, does not print this banner
+       NO_EAGER_LOAD = 1 - lazy module loading is now turned on by default. If you see deadlocks in your tool, set NO_EAGER_LOAD to 0
+---------------------------------------------------------------------------------
+         INSTR_BEGIN = 0 - Beginning of the instruction interval where to apply instrumentation
+           INSTR_END = 4294967295 - End of the instruction interval where to apply instrumentation
+    EXCLUDE_PRED_OFF = 1 - Exclude predicated off instruction from count
+      TRACE_LINEINFO = 0 - Include source code line info at the start of each traced line. The target binary must be compiled with -lineinfo or --generate-line-info
+DYNAMIC_KERNEL_RANGE =  - Specify kernel IDs or ranges to trace. Format:
+  - Single ID:       "2" traces only kernel 2.
+  - Range:           "5-8" traces kernels 5 through 8 (inclusive).
+  - Open-ended:      "10-" traces from kernel 10 onward.
+  - Multiple ranges: "2 5-8 10-" (space-separated).
+  - With regex:      "5-8@kernel_a.*,kernel_b.*" traces kernels 5–8 with matching names.
+If unset or empty, all kernels will be traced from the beginning.
+   ACTIVE_FROM_START = 1 - Start instruction tracing from start or wait for cuProfilerStart and cuProfilerStop. If set to 0, DYNAMIC_KERNEL_RANGE options have no effect
+        TOOL_VERBOSE = 0 - Enable verbosity inside the tool
+       TOOL_COMPRESS = 1 - Enable traces compression
+     TOOL_TRACE_CORE = 0 - write the core id in the traces
+TERMINATE_UPON_LIMIT = 0 - Stop the process once the current kernel > DYNAMIC_KERNEL_LIMIT_END
+USER_DEFINED_FOLDERS = 0 - Uses the user defined folder TRACES_FOLDER path environment
+ TRACE_FILE_COMPRESS = 1 - Create xz-compressed tracefile
+SPINLOCK_HANDLING_MODE = 2 - Spinlock handling mode: 0=none, 1=fast_forward, 2=mark_region
+SPINLOCK_ITER_TO_KEEP = 1 - Number of iterations to keep for spinlock handling
+     ENABLE_WATCHDOG = 1 - Enable the watchdog to skip instructions between WARPSYNC.COLLECTIVE and its target instruction (inclusive)
+        SKIP_TMA_MEM = 0 - Enable the skipping of TMA memory instructions
+ALLOW_REG_VAL_TRACING = 1 - EXPERIMENTAL: Enable the tracing of register values. Trace format is not stable. Trace version is 6.
+NVBIT_INSTRUMENTATION_ENABLED = 0 - Enable NVBit instrumentation. Can be controlled at runtime using enable_nvbit_instrumentation() and disable_nvbit_instrumentation()
+INFO 09-17 22:17:17 [parallel_state.py:1640] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://172.17.0.2:47317 backend=nccl
+INFO 09-17 22:17:17 [parallel_state.py:1977] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+INFO 09-17 22:17:17 [gpu_worker.py:385] Using V2 Model Runner
+WARNING: Do not call CUDA memory allocation in nvbit_at_ctx_init(). It will cause deadlocks. Do them in nvbit_tool_init(). If you encounter deadlocks, remove CUDA API calls to debug.
+INFO 09-17 22:17:18 [model_runner.py:308] Loading model from scratch...
+INFO 09-17 22:17:21 [cuda.py:482] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+INFO 09-17 22:17:21 [flash_attn.py:789] Using FlashAttention version 3
+INFO 09-17 22:17:22 [weight_utils.py:867] Filesystem type for checkpoints: EXT4. Checkpoint size: 0.92 GiB. Available RAM: 431.70 GiB.
+INFO 09-17 22:17:22 [weight_utils.py:890] Auto-prefetch is disabled because the filesystem (EXT4) is not a recognized network FS (NFS/Lustre). If you want to force prefetching, start vLLM with --safetensors-load-strategy=prefetch.
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  5.93it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  5.92it/s]
+
+INFO 09-17 22:17:22 [default_loader.py:430] Loading weights took 0.18 seconds
+INFO 09-17 22:17:23 [model_runner.py:329] Model loading took 0.93 GiB and 4.648595 seconds
+INFO 09-17 22:17:23 [topk_topp_sampler.py:62] Using FlashInfer for top-p & top-k sampling.
+INFO 09-17 22:17:28 [gpu_worker.py:563] Available KV cache memory: 43.76 GiB
+INFO 09-17 22:17:28 [kv_cache_utils.py:2235] GPU KV cache size: 3,824,080 tokens
+INFO 09-17 22:17:28 [kv_cache_utils.py:2236] Maximum concurrency for 2,048 tokens per request: 1867.23x
+INFO 09-17 22:17:29 [kernel_warmup.py:256] Using FlashInfer autotune cache file: /root/.cache/vllm/flashinfer_autotune_cache/0.6.16.post3/90a/9e13c34c3e529ac498cdf9a29c5a4ccc275eec4b01bb4972e80d78ea0fe23698/autotune_configs.json
+2026-09-17 22:17:29,426 - INFO - autotuner.py:2397 - flashinfer.jit: [Autotuner]: Loaded 0 configs from /root/.cache/vllm/flashinfer_autotune_cache/0.6.16.post3/90a/9e13c34c3e529ac498cdf9a29c5a4ccc275eec4b01bb4972e80d78ea0fe23698/autotune_configs.json
+2026-09-17 22:17:29,426 - INFO - autotuner.py:829 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+2026-09-17 22:17:30,237 - INFO - autotuner.py:852 - flashinfer.jit: [Autotuner]: Autotuning process ends
+2026-09-17 22:17:30,241 - INFO - autotuner.py:2269 - flashinfer.jit: [Autotuner]: Saved 0 configs to /root/.cache/vllm/flashinfer_autotune_cache/0.6.16.post3/90a/9e13c34c3e529ac498cdf9a29c5a4ccc275eec4b01bb4972e80d78ea0fe23698/autotune_configs.json (0 new, 0 from previous config)
+INFO 09-17 22:17:30 [gpu_worker.py:789] Free memory on device (78.48/79.18 GiB) on startup. Desired GPU memory utilization is (0.6, 47.51 GiB). Actual usage is 3.19 GiB for consumed memory (weights + non-torch), 0.55 GiB for peak activation, and 0.0 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=46833031066` (43.62 GiB) to fit into requested memory, or `--kv-cache-memory=80086351360` (74.59 GiB) to fully utilize gpu memory. Current kv cache memory in use is 43.76 GiB.
+INFO 09-17 22:17:43 [jit_monitor.py:79] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+INFO 09-17 22:17:43 [core.py:355] init engine (profile, create kv cache, warmup model) took 20.12 s
+INFO 09-17 22:17:44 [hf.py:540] Detected the chat template content format to be 'string'. You can set `--chat-template-content-format` to override this.
+INFO:root:CUDA_INJECTION64_PATH: /accel-sim/./util/tracer_nvbit/tracer_tool/tracer_tool.so
+INFO:root:Found nvbit tracer, attaching hooks to layer model.layers.12
+Rendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]Rendering prompts: 100%|██████████| 1/1 [00:00<00:00, 120.56it/s]
+Processed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]----------------------------------------------------------------------------------------------------
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2254-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2255-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2256-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2257-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2258-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2259-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2260-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2261-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2262-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2263-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2264-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2265-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2563-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2564-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2565-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2566-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2567-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2568-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2569-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2570-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2571-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2572-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2573-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2574-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2872-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2873-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2874-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2875-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2876-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2877-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2878-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2879-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2880-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2881-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2882-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-2883-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3181-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3182-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3183-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3184-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3185-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3186-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3187-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3188-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3189-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3190-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3191-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3192-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3490-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3491-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3492-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3493-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3494-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3495-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3496-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3497-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3498-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3499-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3500-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3501-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3799-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3800-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3801-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3802-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3803-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3804-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3805-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3806-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3807-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3808-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3809-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-3810-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4108-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4109-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4110-ctx_0x35fc7de0.Processed prompts: 100%|██████████| 1/1 [00:42<00:00, 42.20s/it, est. speed input: 0.24 toks/s, output: 0.19 toks/s]Processed prompts: 100%|██████████| 1/1 [00:42<00:00, 42.20s/it, est. speed input: 0.24 toks/s, output: 0.19 toks/s]Processed prompts: 100%|██████████| 1/1 [00:42<00:00, 42.20s/it, est. speed input: 0.24 toks/s, output: 0.19 toks/s]
+PROMPT: 'The quick brown fox jumps over the lazy dog because'
+OUTPUT: ' the dog is lazy.  Given the'
+trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4111-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4112-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4113-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4114-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4115-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4116-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4117-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4118-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4119-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4418-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4419-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4420-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4421-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4422-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4423-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4424-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4425-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4426-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4427-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4428-ctx_0x35fc7de0.trace.xz
+Writing results to /traces/qwen25-0.5b__layer12/llm_layer/layer/traces//kernel-4429-ctx_0x35fc7de0.trace.xz
+[rank0]:[W917 22:18:26.084598414 ProcessGroupNCCL.cpp:1624] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())

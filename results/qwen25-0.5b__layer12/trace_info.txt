@@ -1,0 +1,9 @@
+name=qwen25-0.5b__layer12
+model=Qwen/Qwen2.5-0.5B
+layer=model.layers.12
+prompt=The quick brown fox jumps over the lazy dog because
+max_tokens=8
+date_utc=2026-09-17T22:18:29Z
+gpu=NVIDIA H100 80GB HBM3, 580.105.08
+vllm=0.27.1
+accel_sim=v2.0.0 nvbit=1.8

@@ -1,0 +1,9 @@
+# local state / scratch
+.DS_Store
+__pycache__/
+*.pyc
+# large raw simulator output (kept locally under ~/accelsim/results)
+results/*/stdout__*.txt
+results/*/per_kernel_instance_stats.csv
+# traces are distributed as a release asset, not committed
+traces/
