@@ -11,6 +11,8 @@
 #   -n  max new tokens               default 8 (prefill + 8 decode steps of that layer get traced)
 #   -N  name of the trace set        default <model>__<layer>__<UTC date>
 #   -w  work dir on the host         default ~/accelsim-h100
+#   -P  patch to git-apply to the framework checkout before the tracer build (e.g.
+#       patches/issue561-fix-trywait-drop.patch, the upstream post-processing fix for the split-K deadlock)
 #   -L  only print the model's module names and exit (to pick -l)
 #   env HF_TOKEN                     passed into the container for gated models
 #
@@ -29,11 +31,11 @@ REPO="https://github.com/accel-sim/accel-sim-framework.git"
 TAG="v2.0.0"
 
 MODEL="Qwen/Qwen2.5-0.5B"; LAYER="model.layers.12"; PROMPT="The quick brown fox jumps over the lazy dog because"
-NTOK=8; NAME=""; WORKDIR="$HOME/accelsim-h100"; LIST=0; INSIDE=0
+NTOK=8; NAME=""; WORKDIR="$HOME/accelsim-h100"; LIST=0; INSIDE=0; PATCH=""
 while (( $# )); do
   case "$1" in
     -m) MODEL="$2"; shift 2;; -l) LAYER="$2"; shift 2;; -p) PROMPT="$2"; shift 2;; -n) NTOK="$2"; shift 2;;
-    -N) NAME="$2"; shift 2;; -w) WORKDIR="$2"; shift 2;; -L) LIST=1; shift;; --inside) INSIDE=1; shift;;
+    -N) NAME="$2"; shift 2;; -w) WORKDIR="$2"; shift 2;; -P) PATCH="$2"; shift 2;; -L) LIST=1; shift;; --inside) INSIDE=1; shift;;
     *) echo "unknown arg: $1"; exit 2;;
   esac
 done
@@ -52,11 +54,17 @@ if (( INSIDE == 0 )); then
     docker run --rm --gpus all "$IMAGE" nvidia-smi -L || { echo "GPU not visible in container: install nvidia-container-toolkit."; exit 1; }
   }
 
+  if [[ -n "$PATCH" ]]; then
+    [[ -f "$PATCH" ]] || { echo "patch not found: $PATCH"; exit 1; }
+    PATCH="$(cd "$(dirname "$PATCH")" && pwd)/$(basename "$PATCH")"                    # absolute, before the cd below
+  fi
+
   echo "== Checkout in $WORKDIR"
   mkdir -p "$WORKDIR/traces" "$WORKDIR/hf"
   cd "$WORKDIR"
   [[ -d accel-sim-framework/.git ]] || git clone --branch "$TAG" --depth 1 "$REPO"
   cp "$SELF" accel-sim-framework/04_h100_trace.sh; chmod +x accel-sim-framework/04_h100_trace.sh
+  if [[ -n "$PATCH" ]]; then cp "$PATCH" accel-sim-framework/04_upstream.patch; PATCH=/accel-sim/04_upstream.patch; fi
 
   LISTFLAG=(); (( LIST )) && LISTFLAG=(-L)
   TTY=(); [[ -t 0 ]] && TTY=(-it)          # -it only when we actually have a terminal (nohup/ssh -n runs have none)
@@ -64,7 +72,7 @@ if (( INSIDE == 0 )); then
   exec docker run --rm "${TTY[@]}" --gpus all --ipc=host --ulimit memlock=-1 \
     -e HF_TOKEN="${HF_TOKEN:-}" -e HF_HUB_ENABLE_HF_TRANSFER=0 \
     -v "$WORKDIR/accel-sim-framework:/accel-sim" -v "$WORKDIR/traces:/traces" -v "$WORKDIR/hf:/root/.cache/huggingface" \
-    -w /accel-sim "$IMAGE" /bin/bash ./04_h100_trace.sh --inside -m "$MODEL" -l "$LAYER" -p "$PROMPT" -n "$NTOK" -N "$NAME" -w "$WORKDIR" "${LISTFLAG[@]}"
+    -w /accel-sim "$IMAGE" /bin/bash ./04_h100_trace.sh --inside -m "$MODEL" -l "$LAYER" -p "$PROMPT" -n "$NTOK" -N "$NAME" -w "$WORKDIR" -P "$PATCH" "${LISTFLAG[@]}"
 fi
 
 # ================================= inside the container ==============================================
@@ -84,6 +92,11 @@ python3 -c "import vllm, torch; print('vllm', vllm.__version__, 'torch', torch._
 
 echo "== 2. NVBit tracer (tracer_tool.so, post-traces-processing, spinlock_tool.so)"
 [[ -d $TR/nvbit_release/core ]] || $TR/install_nvbit.sh
+if [[ -n "$PATCH" ]]; then
+  # --ignore-whitespace: the framework sources have CRLF line endings
+  if git apply --ignore-whitespace --reverse --check "$PATCH" 2>/dev/null; then echo "patch already applied: $PATCH"
+  else git apply --ignore-whitespace "$PATCH"; echo "applied $PATCH"; rm -f $TR/tracer_tool/traces-processing/post-traces-processing; fi
+fi
 if [[ ! -f $TR/tracer_tool/tracer_tool.so || ! -x $TR/tracer_tool/traces-processing/post-traces-processing || ! -f $TR/others/spinlock_tool/spinlock_tool.so ]]; then
   make -C $TR -j"$(nproc)" 2>&1 | grep -vE 'nvcc warning|Entering|Leaving' || true
 fi
@@ -157,7 +170,11 @@ raw=$(ls "$OUT"/traces/kernel-*.trace* 2>/dev/null | wc -l); echo "raw kernel tr
 (( raw > 0 )) || { echo "No kernels were traced. Check the layer name (-L) and $OUT/trace_run.log"; exit 1; }
 
 echo "== 6. Post-process to .tracez"
-$TR/tracer_tool/traces-processing/post-traces-processing "$OUT/traces" -j "$(nproc)"
+$TR/tracer_tool/traces-processing/post-traces-processing "$OUT/traces" -j "$(nproc)" 2>&1 | tee "$OUT/post_processing.log"
+echo "Dropped-TRYWAIT lines: $(grep -c 'Dropped .* TRYWAIT' "$OUT/post_processing.log" || true)"
+# Keep the raw traces (own archive, not in the replay set): post-processing can only be redone from them.
+RAW="$TROOT/$NAME.raw"; rm -rf "$RAW"; mkdir -p "$RAW"
+find "$OUT/traces" -maxdepth 1 \( -name '*.trace' -o -name '*.trace.xz' -o -name 'kernelslist' -o -name 'kernelslist_ctx_*' \) -exec cp -p {} "$RAW/" \;
 rm -f "$OUT"/traces/*.trace "$OUT"/traces/*.trace.xz "$OUT"/traces/kernelslist
 ls "$OUT/traces" | head; echo "kernels in kernelslist.g: $(grep -c . "$OUT/traces/kernelslist.g")"
 
@@ -175,10 +192,12 @@ EOF
 
 echo "== 7. Package"
 tar -czf "$TROOT/$NAME.tgz" -C "$TROOT" "$NAME"
-du -sh "$TROOT/$NAME" "$TROOT/$NAME.tgz"
+tar -cf "$TROOT/$NAME.raw.tar" -C "$TROOT" "$NAME.raw"          # already xz-compressed per kernel
+du -sh "$TROOT/$NAME" "$TROOT/$NAME.tgz" "$TROOT/$NAME.raw.tar"
 cat <<EOF
 
 Done. Archive: $TROOT/$NAME.tgz in the container (= $WORKDIR/traces/$NAME.tgz on a VM host).
+Raw (pre-post-processing) traces: $TROOT/$NAME.raw.tar -- copy these too, they cannot be regenerated without the GPU.
 Copy it to the Mac and simulate:
   scp <host>:<path>/$NAME.tgz ~/accelsim/traces/ && tar -xzf ~/accelsim/traces/$NAME.tgz -C ~/accelsim/traces/
   (in the accelsim container)  ./02_run_sim.sh llm_layer /traces/$NAME H100-SASS-Accelwattch_SASS_SIM $NAME
