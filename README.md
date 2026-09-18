@@ -74,10 +74,7 @@ flowchart LR
         F["04_h100_trace.sh<br/>vLLM image, NVBit tracer,<br/>spinlock detection, trace one layer,<br/>post-process, tar"]
     end
     A --> B --> D --> E
-    F -- "68 MB .tgz (96 kernels)" --> D
-    style MAC fill:none,stroke:#52514e,stroke-width:1px
-    style C fill:none,stroke:#2a78d6,stroke-width:1px
-    style H100 fill:none,stroke:#eb6834,stroke-width:1px
+    F -- "68 MB .tgz, 96 kernels" --> D
 ```
 
 Each script is idempotent and re-runnable. Bind mounts make everything persistent: `~/accelsim/accel-sim-framework` is `/accel-sim` in the container, `~/accelsim/traces` is `/traces`, `~/accelsim/results` is `/results`.
