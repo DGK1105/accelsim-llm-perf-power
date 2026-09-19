@@ -1,0 +1,394 @@
+Using 26 parallel threads
+Output format: .tracez (zstd compressed)
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2254-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2566-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2567-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2568-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2873-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2258-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2259-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2264-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2257-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2263-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2564-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2572-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2256-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2262-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2571-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2872-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2569-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2573-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2570-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2574-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2261-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2265-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2563-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2565-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2874-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2875-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2876-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2877-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2878-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2879-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2880-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2881-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2882-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2883-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3181-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3182-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3183-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3184-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3185-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3186-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3187-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3188-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3189-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3190-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3191-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3192-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3490-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3491-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3492-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3493-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3494-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3495-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3496-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3497-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3498-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3499-ctx_0x1afd03e0.trace.xz
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2878-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x3028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2878-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x2028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2878-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x2028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2878-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x1028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2878-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x30285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2878-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x1028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2878-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x10285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2878-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x28478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2878-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x20285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2878-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x28470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2878-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x3028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2878-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x285c0 (no ARRIVE in this kernel)
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3500-ctx_0x1afd03e0.trace.xz
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3185-ctx_0x1afd03e0.trace.xz] Dropped 114 TRYWAIT lane(s) on mbarrier 0x1ac68 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3185-ctx_0x1afd03e0.trace.xz] Dropped 114 TRYWAIT lane(s) on mbarrier 0x1ac48 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3187-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x3028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3187-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x2028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3187-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x2028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3187-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x1028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3187-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x30285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3187-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x1028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3187-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x10285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3187-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x28478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3187-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x20285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3187-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x28470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3187-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x3028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3187-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x285c0 (no ARRIVE in this kernel)
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3501-ctx_0x1afd03e0.trace.xz
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2876-ctx_0x1afd03e0.trace.xz] Dropped 114 TRYWAIT lane(s) on mbarrier 0x1ac68 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2876-ctx_0x1afd03e0.trace.xz] Dropped 114 TRYWAIT lane(s) on mbarrier 0x1ac48 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3496-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x3028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3496-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x2028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3496-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x2028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3496-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x1028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3496-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x30285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3496-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x1028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3496-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x10285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3496-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x28478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3496-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x20285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3496-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x28470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3496-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x3028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3496-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2567-ctx_0x1afd03e0.trace.xz] Dropped 114 TRYWAIT lane(s) on mbarrier 0x1ac68 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2567-ctx_0x1afd03e0.trace.xz] Dropped 114 TRYWAIT lane(s) on mbarrier 0x1ac48 (no ARRIVE in this kernel)
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3799-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3800-ctx_0x1afd03e0.trace.xz
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2873-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x3028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2873-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x2028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2873-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x2028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2873-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x1028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2873-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x30285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2873-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x1028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2873-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x10285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2873-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x28478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2873-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x20285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2873-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x28470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2873-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x3028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2873-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x285c0 (no ARRIVE in this kernel)
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3801-ctx_0x1afd03e0.trace.xz
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2569-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x3028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2569-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x2028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2569-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x2028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2569-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x1028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2569-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x30285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2569-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x1028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2569-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x10285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2569-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x28478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2569-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x20285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2569-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x28470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2569-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x3028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2569-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x285c0 (no ARRIVE in this kernel)
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3802-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3803-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3804-ctx_0x1afd03e0.trace.xz
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2564-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x3028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2564-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x2028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2564-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x2028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2564-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x1028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2564-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x30285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2564-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x1028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2564-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x10285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2564-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x28478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2564-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x20285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2564-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x28470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2564-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x3028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2564-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x285c0 (no ARRIVE in this kernel)
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3805-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3806-ctx_0x1afd03e0.trace.xz
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3494-ctx_0x1afd03e0.trace.xz] Dropped 114 TRYWAIT lane(s) on mbarrier 0x1ac68 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3494-ctx_0x1afd03e0.trace.xz] Dropped 114 TRYWAIT lane(s) on mbarrier 0x1ac48 (no ARRIVE in this kernel)
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3807-ctx_0x1afd03e0.trace.xz
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3491-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x3028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3491-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x2028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3491-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x2028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3491-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x1028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3491-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x30285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3491-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x1028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3491-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x10285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3491-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x28478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3491-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x20285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3491-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x28470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3491-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x3028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3491-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3182-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x3028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3182-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x2028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3182-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x2028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3182-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x1028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3182-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x30285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3182-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x1028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3182-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x10285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3182-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x28478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3182-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x20285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3182-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x28470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3182-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x3028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3182-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x285c0 (no ARRIVE in this kernel)
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3808-ctx_0x1afd03e0.trace.xz
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x7028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x7028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x70285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x6028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x6028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x60285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x5028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x5028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x50285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x4028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x4028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x28470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x28478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x10285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x1028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x20285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x1028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x2028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x3028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x40285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x30285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x2028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2260-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x3028470 (no ARRIVE in this kernel)
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3809-ctx_0x1afd03e0.trace.xz
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3803-ctx_0x1afd03e0.trace.xz] Dropped 114 TRYWAIT lane(s) on mbarrier 0x1ac68 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3803-ctx_0x1afd03e0.trace.xz] Dropped 114 TRYWAIT lane(s) on mbarrier 0x1ac48 (no ARRIVE in this kernel)
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3810-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4108-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4109-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4110-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4111-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4112-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4113-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4114-ctx_0x1afd03e0.trace.xz
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x7028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x7028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x70285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x6028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x6028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x60285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x5028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x5028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x50285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x4028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x4028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x28470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x28478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x10285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x1028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x20285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x1028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x2028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x3028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x40285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x30285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x2028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2255-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x3028470 (no ARRIVE in this kernel)
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4115-ctx_0x1afd03e0.trace.xz
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2258-ctx_0x1afd03e0.trace.xz] Dropped 114 TRYWAIT lane(s) on mbarrier 0x16c68 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2258-ctx_0x1afd03e0.trace.xz] Dropped 114 TRYWAIT lane(s) on mbarrier 0x16c48 (no ARRIVE in this kernel)
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4116-ctx_0x1afd03e0.trace.xz
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3800-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x3028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3800-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x2028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3800-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x2028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3800-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x1028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3800-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x30285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3800-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x1028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3800-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x10285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3800-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x28478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3800-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x20285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3800-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x28470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3800-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x3028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3800-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x285c0 (no ARRIVE in this kernel)
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4117-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4118-ctx_0x1afd03e0.trace.xz
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3805-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x3028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3805-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x2028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3805-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x2028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3805-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x1028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3805-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x30285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3805-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x1028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3805-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x10285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3805-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x28478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3805-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x20285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3805-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x28470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3805-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x3028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3805-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x285c0 (no ARRIVE in this kernel)
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4119-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4418-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4419-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4420-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4421-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4422-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4423-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4424-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4425-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4426-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4427-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4429-ctx_0x1afd03e0.trace.xz
+Processing file /traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4428-ctx_0x1afd03e0.trace.xz
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4109-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x3028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4109-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x2028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4109-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x2028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4109-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x1028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4109-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x30285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4109-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x1028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4109-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x10285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4109-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x28478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4109-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x20285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4109-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x28470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4109-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x3028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4109-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4114-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x3028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4114-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x2028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4114-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x2028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4114-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x1028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4114-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x30285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4114-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x1028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4114-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x10285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4114-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x28478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4114-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x20285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4114-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x28470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4114-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x3028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4114-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4112-ctx_0x1afd03e0.trace.xz] Dropped 114 TRYWAIT lane(s) on mbarrier 0x1ac68 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4112-ctx_0x1afd03e0.trace.xz] Dropped 114 TRYWAIT lane(s) on mbarrier 0x1ac48 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4424-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x3028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4424-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x2028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4424-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x2028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4424-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x1028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4424-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x30285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4424-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x1028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4424-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x10285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4424-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x28478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4424-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x20285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4424-ctx_0x1afd03e0.trace.xz] Dropped 132 TRYWAIT lane(s) on mbarrier 0x28470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4424-ctx_0x1afd03e0.trace.xz] Dropped 4 TRYWAIT lane(s) on mbarrier 0x3028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4424-ctx_0x1afd03e0.trace.xz] Dropped 512 TRYWAIT lane(s) on mbarrier 0x285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4422-ctx_0x1afd03e0.trace.xz] Dropped 114 TRYWAIT lane(s) on mbarrier 0x1ac68 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4422-ctx_0x1afd03e0.trace.xz] Dropped 114 TRYWAIT lane(s) on mbarrier 0x1ac48 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4419-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x3028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4419-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x2028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4419-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x2028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4419-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x1028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4419-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x30285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4419-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x1028470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4419-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x10285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4419-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x28478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4419-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x20285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4419-ctx_0x1afd03e0.trace.xz] Dropped 165 TRYWAIT lane(s) on mbarrier 0x28470 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4419-ctx_0x1afd03e0.trace.xz] Dropped 5 TRYWAIT lane(s) on mbarrier 0x3028478 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4419-ctx_0x1afd03e0.trace.xz] Dropped 640 TRYWAIT lane(s) on mbarrier 0x285c0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2264-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x302c5b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2264-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x202c5b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2264-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x102c5b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2264-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x2c5b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2573-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x30285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2573-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x20285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2573-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x10285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2573-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2882-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x30285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2882-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x20285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2882-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x10285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2882-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2571-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x3037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2571-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x2037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2571-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x1037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2571-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x37560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3191-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x30285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3191-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x20285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3191-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x10285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3191-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3500-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x30285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3500-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x20285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3500-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x10285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3500-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4118-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x30285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4118-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x20285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4118-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x10285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4118-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3809-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x30285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3809-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x20285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3809-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x10285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3809-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3189-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x3037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3189-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x2037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3189-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x1037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3189-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x37560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3498-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x3037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3498-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x2037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3498-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x1037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3498-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x37560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4428-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x30285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4428-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x20285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4428-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x10285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4428-ctx_0x1afd03e0.trace.xz] Dropped 1536 TRYWAIT lane(s) on mbarrier 0x285b0 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2880-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x3037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2880-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x2037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2880-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x1037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2880-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x37560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2262-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x3035d48 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2262-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x2035d48 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2262-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x1035d48 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-2262-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x35d48 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3807-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x3037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3807-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x2037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3807-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x1037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-3807-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x37560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4426-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x3037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4426-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x2037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4426-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x1037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4426-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x37560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4116-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x3037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4116-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x2037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4116-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x1037560 (no ARRIVE in this kernel)
+[/traces/qwen25-0.5b__layer12-fixed/llm_layer/layer/traces/kernel-4116-ctx_0x1afd03e0.trace.xz] Dropped 2432 TRYWAIT lane(s) on mbarrier 0x37560 (no ARRIVE in this kernel)

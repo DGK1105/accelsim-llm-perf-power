@@ -1,5 +1,7 @@
 # Filed as https://github.com/accel-sim/accel-sim-framework/issues/561 (2026-09-18)
 
+> **Status (2026-09-18): resolved.** The maintainers traced this to the trace post-processor (`drop_unused_trywaits` reading only the first mbarrier address of multi-lane `ARRIVE` lines), not the simulator's mbarrier model as hypothesised below, and posted a fix in the issue thread. See the README section "The split-K deadlock" and `patches/issue561-fix-trywait-drop.patch`. The text below is the report as originally filed.
+
 Title: v2.0.0: trace-driven H100 sim deadlocks on cuBLAS split-K GEMM (nvjet_sm90_*_splitK) traced from vLLM via torch_hook
 
 ## Summary

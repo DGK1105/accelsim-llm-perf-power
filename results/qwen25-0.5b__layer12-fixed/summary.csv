@@ -1,0 +1,2 @@
+app,args,config,cycles,instructions,ipc,ipc_calc,sim_time_s,kernels,avg_power_W,max_power_W,power_kernels,Accel-Sim-build,GPGPU-Sim-build
+llm_layer,layer,H100-SASS-Accelwattch_SASS_SIM,645976.0,263858709.0,408.4652,408.4651891091929,1067.0,16,81.6052,160.747,96,accelsim-commit-6465301_modified_0.0_26-09-16-21-52-33,gpgpu-sim_git-commit-e10018b6_modified_0.0.

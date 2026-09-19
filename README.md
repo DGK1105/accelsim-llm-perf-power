@@ -2,13 +2,13 @@
 
 <p align="center">
 Cycle-level simulation of real Hopper LLM kernels with <a href="https://github.com/accel-sim/accel-sim-framework">Accel-Sim 2.0</a> and the AccelWattch power model,<br>
-run end to end on an Apple Silicon Mac, with a 40-minute H100 rental for tracing.
+run end to end on an Apple Silicon Mac, with two short H100 rentals for tracing.
 </p>
 
 <p align="center">
 <img alt="Accel-Sim 2.0" src="https://img.shields.io/badge/Accel--Sim-v2.0.0-2a78d6">
 <img alt="GPGPU-Sim" src="https://img.shields.io/badge/GPGPU--Sim-4.2%20%40%20e10018b6-2a78d6">
-<img alt="Target" src="https://img.shields.io/badge/target-H100%20SXM%20(SM90)-1baf7a">
+<img alt="Target" src="https://img.shields.io/badge/target-H100%20(SM90)-1baf7a">
 <img alt="Traced with" src="https://img.shields.io/badge/traced%20with-vLLM%200.27.1%20%2B%20NVBit%201.8-eb6834">
 <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-52514e"></a>
 </p>
@@ -19,8 +19,8 @@ run end to end on an Apple Silicon Mac, with a 40-minute H100 rental for tracing
 
 - **A reproducible pipeline** (five scripts) that builds Accel-Sim 2.0 in a container on a Mac, replays published traces, traces one transformer layer of a real LLM on a rented H100, and replays it on the H100 model with power. Every upstream problem hit along the way is worked around in the scripts and documented below.
 - **Validated on published Tesla V100 traces**: 10 benchmarks, all clean, cycle counts identical with and without the power model; the H100 model replays the same traces in **1.07× to 1.43×** fewer cycles.
-- **A real H100 trace of a decoder layer** of Qwen2.5-0.5B under vLLM: 96 kernels, prefill plus 8 decode steps. The full prefill pass (10 kernels: RMSNorm, QKV GEMM, rotary, KV-cache write, FlashAttention-3, o-proj GEMM, gate/up GEMM, SiLU) simulates cleanly: **76,502 cycles, 32.6 M instructions, 79.6 W** average.
-- **A simulator bug found and filed**: the 11th kernel, a cuBLAS **split-K GEMM** (`nvjet_sm90_*_splitK`, the kernel cuBLAS picks for small-M decode GEMMs), deadlocks in the simulator's `mbarrier` model. See [accel-sim/accel-sim-framework#561](https://github.com/accel-sim/accel-sim-framework/issues/561) and [the section below](#the-split-k-deadlock-accel-sim-issue-561).
+- **A real H100 trace of a decoder layer** of Qwen2.5-0.5B under vLLM: 96 kernels, one prefill pass plus 7 decode passes of 12 kernels each. **All 96 simulate to completion** on the H100 model with power: **645,976 cycles, 263.9 M instructions, 81.6 W** average. A decode pass costs **79.5k cycles**, only 11% less than the 11-token prefill pass (89.5k): at this size the block is launch- and latency-bound, not compute-bound.
+- **An upstream bug found, reported and fixed**: the first replay deadlocked on kernel 11, a cuBLAS **split-K GEMM** (`nvjet_sm90_*_splitK`). Reported as [accel-sim/accel-sim-framework#561](https://github.com/accel-sim/accel-sim-framework/issues/561); the maintainers traced it to the **trace post-processor wrongly deleting `TRYWAIT` instructions** and supplied a patch, which this repo carries in [`patches/`](patches/) and `04_h100_trace.sh -P` applies. See [the section below](#the-split-k-deadlock-accel-sim-issue-561).
 
 > [!NOTE]
 > All watts in this repository come from AccelWattch's **V100-calibrated** coefficients (the only ones upstream ships; SM count and clock are injected at runtime). They are a **relative** power model, good for kernel-vs-kernel and config-vs-config comparison, not absolute H100 watts. Details in [Power model caveat](#power-model-caveat).
@@ -54,7 +54,7 @@ run end to end on an Apple Silicon Mac, with a 40-minute H100 rental for tracing
 
 **Why one layer?** A transformer is a stack of identical decoder blocks. Accel-Sim 2.0 attaches NVBit to the live PyTorch process inside vLLM and switches tracing on only around the forward pass of one named module. One representative block, traced through prefill and a few decode steps, is enough to extrapolate the model, and it keeps the trace at tens of megabytes instead of terabytes.
 
-**Why a Mac?** Because there is no GPU needed for anything except the ~10-minute tracing step. The x86-64 simulator image runs under Rosetta in Docker Desktop at 2 to 4× native speed, which is fine for the small kernels here. The one rental was 40 minutes of a 2× H100 node.
+**Why a Mac?** Because there is no GPU needed for anything except the ~10-minute tracing step. The x86-64 simulator image runs under Rosetta in Docker Desktop at 2 to 4× native speed, which is fine for the small kernels here. The two rentals were 40 minutes of a 2× H100 node and, for the re-trace with the upstream fix, 20 minutes of a single H100.
 
 ---
 
@@ -74,7 +74,7 @@ flowchart LR
         F["04_h100_trace.sh<br/>vLLM image, NVBit tracer,<br/>spinlock detection, trace one layer,<br/>post-process, tar"]
     end
     A --> B --> D --> E
-    F -- "68 MB .tgz, 96 kernels" --> D
+    F -- "66 MB .tgz, 96 kernels" --> D
 ```
 
 Each script is idempotent and re-runnable. Bind mounts make everything persistent: `~/accelsim/accel-sim-framework` is `/accel-sim` in the container, `~/accelsim/traces` is `/traces`, `~/accelsim/results` is `/results`.
@@ -85,7 +85,7 @@ Each script is idempotent and re-runnable. Bind mounts make everything persisten
 | `01_build_and_traces.sh` | container | Installs missing build deps, builds with cmake (LTO off), pins GPGPU-Sim, copies power XMLs into the H100 config, writes the `llm_layer` app suite, downloads the V100 smoke traces | 15–25 min first time |
 | `02_run_sim.sh` | container | Validates benchmark and config names, applies the job-template revert, sizes concurrency from the memory limit, launches, monitors, collects stats and power reports | minutes to hours |
 | `03_collect.py` | anywhere | Parses the stats tool's CSV blocks and the AccelWattch reports into `perf_tidy.csv`, `power_tidy.csv`, `summary.csv` | seconds |
-| `04_h100_trace.sh` | GPU host | Pulls the upstream vLLM image, builds the NVBit tracer, runs spinlock detection, traces one named layer, post-processes to `.tracez`, tars it | ~20 min incl. pull |
+| `04_h100_trace.sh` | GPU host | Pulls the upstream vLLM image, optionally applies a patch to the checkout (`-P`), builds the NVBit tracer, runs spinlock detection, traces one named layer, post-processes to `.tracez`, tars it and keeps the raw traces in a second archive | ~20 min incl. pull |
 
 ---
 
@@ -99,18 +99,24 @@ Each script is idempotent and re-runnable. Bind mounts make everything persisten
 │   ├── smoke/                 rodinia_2.0-ft V100 traces on QV100-SASS
 │   ├── smoke-power/           same, with AccelWattch
 │   ├── h100-power/            same traces on H100-SASS with AccelWattch
-│   └── qwen25-0.5b__layer12/  the LLM layer on H100-SASS with AccelWattch (partial, see #561)
-│       ├── summary.csv, perf_tidy.csv, power_tidy.csv
-│       ├── accelwattch_power_report.log       per-kernel power report
-│       ├── simulator_stdout_with_deadlock.txt.gz
-│       ├── trace_info.txt                      model, layer, prompt, GPU, driver, versions
-│       └── kernelslist.g                       the 96 kernel trace files, in order
+│   ├── qwen25-0.5b__layer12-fixed/   the LLM layer on H100-SASS with AccelWattch, all 96 kernels
+│   │   ├── summary.csv, perf_tidy.csv, power_tidy.csv
+│   │   ├── accelwattch_power_report.log       per-kernel power report
+│   │   ├── simulator_stdout.txt.gz
+│   │   ├── post_processing.log                 output of the patched post-processor
+│   │   ├── trace_info.txt                      model, layer, prompt, GPU, driver, versions
+│   │   └── kernelslist.g                       the 96 kernel trace files, in order
+│   └── qwen25-0.5b__layer12/         the first trace (unpatched post-processor): 10 kernels, then the deadlock
+│       └── simulator_stdout_with_deadlock.txt.gz, …
+├── patches/
+│   └── issue561-fix-trywait-drop.patch         upstream fix for the post-processor (from #561)
 └── docs/
     ├── img/                                    charts (light + dark)
+    ├── tools/make_charts.py                    regenerates them from results/
     └── upstream-issue-561-splitK-deadlock.md   the bug report as filed
 ```
 
-The 68 MB trace itself is published as a GitHub release asset rather than committed; see [Releases](../../releases).
+The traces themselves (66 MB post-processed, 95 MB raw) are published as GitHub release assets rather than committed; see [Releases](../../releases).
 
 ---
 
@@ -141,12 +147,13 @@ python3 03_collect.py /results/h100-power
 <summary><b>On a rented H100</b> (any provider with Docker and the NVIDIA container toolkit; Lambda Cloud was used)</summary>
 
 ```bash
-scp 04_h100_trace.sh ubuntu@<ip>:~/ && ssh ubuntu@<ip>
+scp -r 04_h100_trace.sh patches ubuntu@<ip>:~/ && ssh ubuntu@<ip>
 sudo usermod -aG docker ubuntu && exit && ssh ubuntu@<ip>      # docker group needs a fresh login
 ./04_h100_trace.sh -L                                           # pulls image, builds tracer, lists module names
-./04_h100_trace.sh -m Qwen/Qwen2.5-0.5B -l model.layers.12 -n 8 -N qwen25-0.5b__layer12
-# copy ~/accelsim-h100/traces/qwen25-0.5b__layer12.tgz to the Mac's ~/accelsim/traces/ and untar it, then in the container:
-./02_run_sim.sh llm_layer /traces/qwen25-0.5b__layer12 H100-SASS-Accelwattch_SASS_SIM qwen25-0.5b__layer12
+./04_h100_trace.sh -m Qwen/Qwen2.5-0.5B -l model.layers.12 -n 8 -N qwen25-0.5b__layer12-fixed \
+                   -P patches/issue561-fix-trywait-drop.patch    # until the fix is in a release, see #561
+# copy ~/accelsim-h100/traces/qwen25-0.5b__layer12-fixed.tgz (and .raw.tar) to the Mac's ~/accelsim/traces/, untar the .tgz, then in the container:
+./02_run_sim.sh llm_layer /traces/qwen25-0.5b__layer12-fixed H100-SASS-Accelwattch_SASS_SIM qwen25-0.5b__layer12-fixed
 ```
 Container-style providers (RunPod, Vast.ai) have no Docker inside the pod: start the pod from `ghcr.io/accel-sim/accel-sim-framework:ubuntu-24.04-cuda-12.8-vllm` and run the script's inner half with `ACCELSIM_ROOT=… TRACES_ROOT=… bash 04_h100_trace.sh --inside …` (documented in the script header).
 </details>
@@ -204,58 +211,81 @@ The V100 traces replay on the H100 model too; traces are instruction-level and t
 
 ### 3. A real LLM layer on the H100 model
 
-**What was traced.** `Qwen/Qwen2.5-0.5B` served by vLLM 0.27.1 (`enforce_eager=True`, single process) on an H100 80 GB SXM5 (driver 580.105.08), with Accel-Sim's PyTorch hook switching NVBit tracing on only inside `model.layers.12`, a complete decoder block. One prompt of 11 tokens, 8 generated tokens, so the trace contains the block's prefill pass and 8 decode passes: **96 kernels**, 68 MB compressed. Spinlock detection ran first (two passes, 491 spin-loop sites found), then the traced run with `SPINLOCK_HANDLING_MODE=2`, then post-processing to `.tracez`. The model's output for the prompt was normal (`" the dog is lazy.  Given the"`), so the hooked process was generating correctly. Metadata: [`results/qwen25-0.5b__layer12/trace_info.txt`](results/qwen25-0.5b__layer12/trace_info.txt).
+**What was traced.** `Qwen/Qwen2.5-0.5B` served by vLLM 0.27.1 (`enforce_eager=True`, single process) on an H100 80 GB (driver 580.105.08), with Accel-Sim's PyTorch hook switching NVBit tracing on only inside `model.layers.12`, a complete decoder block. One prompt of 11 tokens, 8 generated tokens, so the trace holds the block's prefill pass and 7 single-token decode passes, 12 kernels each: **96 kernels**, 66 MB compressed. Spinlock detection ran first (two passes, 473 spin-loop sites), then the traced run with `SPINLOCK_HANDLING_MODE=2`, then post-processing to `.tracez` with the [upstream fix from #561](#the-split-k-deadlock-accel-sim-issue-561) applied. Metadata: [`results/qwen25-0.5b__layer12-fixed/trace_info.txt`](results/qwen25-0.5b__layer12-fixed/trace_info.txt).
 
-**What happened on replay.** The simulator ran the first 10 kernels, the entire prefill pass, and then deadlocked on kernel 11.
+**What happened on replay.** The first trace, post-processed with stock v2.0.0, deadlocked on kernel 11. Re-traced with the fix, all 96 kernels simulate to a clean exit.
 
-<img alt="A strip of 96 cells, one per kernel: the first 10 green (simulated), the 11th red (deadlocked), the remaining 85 grey (not reached)." src="docs/img/llm-layer-kernel-strip-light.png#gh-light-mode-only" width="100%">
-<img alt="A strip of 96 cells, one per kernel: the first 10 green (simulated), the 11th red (deadlocked), the remaining 85 grey (not reached)." src="docs/img/llm-layer-kernel-strip-dark.png#gh-dark-mode-only" width="100%">
+<img alt="Two strips of 96 cells, one per kernel. Before the fix: the first 10 green (simulated), the 11th red (deadlocked), the remaining 85 grey (not reached). After the fix: all 96 green, grouped as one prefill pass and seven decode passes of 12 kernels." src="docs/img/llm-layer-kernel-strip-light.png#gh-light-mode-only" width="100%">
+<img alt="Two strips of 96 cells, one per kernel. Before the fix: the first 10 green (simulated), the 11th red (deadlocked), the remaining 85 grey (not reached). After the fix: all 96 green, grouped as one prefill pass and seven decode passes of 12 kernels." src="docs/img/llm-layer-kernel-strip-dark.png#gh-dark-mode-only" width="100%">
 
-**Prefill pass, per kernel** (`H100-SASS-Accelwattch_SASS_SIM`):
+| | cycles | instructions | avg W |
+|---|---:|---:|---:|
+| prefill pass (11 tokens, 12 kernels) | 89,514 | 42,730,058 | 81.4 |
+| decode pass (1 token, 12 kernels), mean of 7 | 79,495 | 31,589,807 | 81.6 |
+| **whole trace (96 kernels)** | **645,976** | **263,858,709** | **81.6** |
 
-<img alt="Left: simulated cycles for the 10 prefill kernels; FlashAttention-3 (14,954) and the gate/up GEMM (16,723) dominate. Right: AccelWattch average watts per kernel, 70 to 95 W, GEMMs highest." src="docs/img/llm-layer-kernels-light.png#gh-light-mode-only" width="100%">
-<img alt="Left: simulated cycles for the 10 prefill kernels; FlashAttention-3 (14,954) and the gate/up GEMM (16,723) dominate. Right: AccelWattch average watts per kernel, 70 to 95 W, GEMMs highest." src="docs/img/llm-layer-kernels-dark.png#gh-dark-mode-only" width="100%">
+<sup>Config `H100-SASS-Accelwattch_SASS_SIM`. Watts are cycle-weighted means of the per-kernel AccelWattch averages; peak kernel power 160.7 W. The seven decode passes agree within 1% (79,015 to 80,490 cycles).</sup>
 
-| # | kernel (vLLM / cuBLAS / CUTLASS) | role in the block | cycles | instructions | avg W |
-|--:|---|---|---:|---:|---:|
-| 1 | `vllm::fused_add_rms_norm_kernel` | input RMSNorm | 5,581 | 623,310 | 72.1 |
-| 2 | `nvjet_sm90_tst_64x8_64x16_4x2_h_bz_bias_TNT` | QKV projection GEMM | 7,148 | 5,641,136 | 84.0 |
-| 3 | `vllm::rotary_embedding_kernel` | RoPE | 5,786 | 572,440 | 71.6 |
-| 4 | `vllm::reshape_and_cache_flash_kernel` | KV-cache write | 4,910 | 157,056 | 70.6 |
-| 5 | `cutlass::device_kernel<flash::…sm90…>` | FlashAttention-3 | 14,954 | 6,140,544 | 74.8 |
-| 6 | `at::native::vectorized_elementwise_kernel<FillFunctor>` | fill | 3,346 | 2,950 | 70.3 |
-| 7 | `nvjet_sm90_tst_64x8_64x16_4x2_h_bz_TNT` | output projection GEMM | 6,707 | 4,410,171 | 81.4 |
-| 8 | `vllm::fused_add_rms_norm_kernel` | post-attention RMSNorm | 5,569 | 623,310 | 72.4 |
-| 9 | `nvjet_sm90_tst_128x16_64x11_4x1_v_bz_TNT` | gate/up projection GEMM | 16,723 | 12,875,921 | 95.4 |
-| 10 | `vllm::act_and_mul_kernel<SiluAndMul>` | SiLU × up | 5,778 | 1,592,960 | 76.0 |
-| 11 | `nvjet_sm90_tst_64x8_64x16_4x2_h_bz_splitK_TNT` | down projection GEMM (split-K) | **deadlock** | | |
-| | **prefill total (1–10)** | | **76,502** | **32,639,798** | **79.6** |
+**Per kernel, prefill vs decode:**
 
-<sup>Cycles are per kernel instance from `per_kernel_instance_stats`; watts from the per-kernel AccelWattch report. Full data: [`results/qwen25-0.5b__layer12/`](results/qwen25-0.5b__layer12/).</sup>
+<img alt="Left: simulated cycles for the 12 kernels of the block, prefill and decode side by side; FlashAttention-3 (15,021 prefill) and the gate/up GEMM (11,809 decode) dominate. Right: AccelWattch average watts per kernel, 70 to 109 W, the MLP GEMMs highest." src="docs/img/llm-layer-kernels-light.png#gh-light-mode-only" width="100%">
+<img alt="Left: simulated cycles for the 12 kernels of the block, prefill and decode side by side; FlashAttention-3 (15,021 prefill) and the gate/up GEMM (11,809 decode) dominate. Right: AccelWattch average watts per kernel, 70 to 109 W, the MLP GEMMs highest." src="docs/img/llm-layer-kernels-dark.png#gh-dark-mode-only" width="100%">
 
-Two things stand out even in this partial result. The two MLP GEMMs and FlashAttention-3 account for about 60% of the block's prefill cycles, with the gate/up GEMM alone at 22%. And the GEMMs are the power peaks (84 to 95 W) while everything else sits within 10 W of the floor, which is the expected shape for a tensor-core-bound block and a sanity check on the activity-factor model.
+| # | kernel (vLLM / cuBLAS / CUTLASS), prefill variant | role in the block | prefill cycles | decode cycles | prefill W | decode W |
+|--:|---|---|---:|---:|---:|---:|
+| 1 | `vllm::fused_add_rms_norm_kernel` | input RMSNorm | 5,567 | 5,497 | 72.1 | 70.9 |
+| 2 | `nvjet_sm90_tst_64x8_64x16_4x2_h_bz_bias_TNT` | QKV projection GEMM | 7,148 | 7,094 | 84.0 | 80.4 |
+| 3 | `vllm::rotary_embedding_kernel` | RoPE | 5,788 | 5,440 | 71.6 | 70.8 |
+| 4 | `vllm::reshape_and_cache_flash_kernel` | KV-cache write | 4,910 | 4,625 | 70.6 | 70.7 |
+| 5 | `cutlass::device_kernel<flash::…sm90…>` | FlashAttention-3 | 15,021 | 10,275 | 74.4 | 73.3 |
+| 6 | `at::native::vectorized_elementwise_kernel<FillFunctor>` | fill | 3,348 | 3,348 | 70.3 | 70.3 |
+| 7 | `nvjet_sm90_tst_64x8_64x16_4x2_h_bz_TNT` | output projection GEMM | 6,695 | 6,764 | 81.3 | 78.4 |
+| 8 | `vllm::fused_add_rms_norm_kernel` | post-attention RMSNorm | 5,571 | 5,322 | 72.6 | 70.5 |
+| 9 | `nvjet_sm90_tst_128x16_64x11_4x1_v_bz_TNT` | gate/up projection GEMM | 14,706 | 11,809 | 98.7 | 108.9 |
+| 10 | `vllm::act_and_mul_kernel<SiluAndMul>` | SiLU × up | 5,781 | 5,827 | 76.1 | 71.1 |
+| 11 | `nvjet_sm90_tst_64x16_64x16_4x1_v_bz_splitK_TNT` | down projection GEMM (split-K) | 10,684 | 9,233 | 94.6 | 99.7 |
+| 12 | `cublasLt::splitKreduce_kernel` | split-K reduction | 4,295 | 4,260 | 73.6 | 71.6 |
+| | **pass total** | | **89,514** | **79,495** | **81.4** | **81.6** |
+
+<sup>Decode columns are means over the 7 decode passes; cuBLAS picks `4x1_v` variants of the GEMMs in decode (for example `nvjet_sm90_tst_128x8_64x12_4x1_v_bz_TNT` for gate/up). Cycles are per kernel instance from the simulator's stdout; watts from the per-kernel AccelWattch report. Full data: [`results/qwen25-0.5b__layer12-fixed/`](results/qwen25-0.5b__layer12-fixed/).</sup>
+
+What the full result shows:
+
+- **Decode is barely cheaper than prefill.** One token costs 79.5k cycles, eleven tokens 89.5k. Nine of the twelve kernels take the same time either way (within 6%), because at this model size they are bound by launch and synchronisation latency rather than arithmetic. Only FlashAttention-3 (−32%), the gate/up GEMM (−20%) and the down GEMM (−14%) get faster with fewer tokens. This is the simulator's view of why small-batch decode wastes a big GPU.
+- **The five GEMM-path kernels are half the block** (49% of cycles in both phases); the attention path (RoPE, KV write, FlashAttention-3, fill) is 30 to 33%; norms and activation the remaining 19 to 21%.
+- **The MLP GEMMs are the power peaks**, 95 to 109 W, and the gate/up GEMM draws *more* in decode (108.9 W vs 98.7 W) while taking fewer cycles, the signature of a denser kernel variant. Everything that is not a GEMM sits within 6 W of the ~70 W floor, the expected shape for a tensor-core-bound block and a sanity check on the activity-factor model.
+- **The first ten prefill kernels reproduce the first trace**, taken on a different H100 two days earlier, within 0.5% on cycles for nine of them (the gate/up GEMM differs by 12%), so the pipeline is repeatable across hosts.
 
 ---
 
 ## The split-K deadlock (Accel-Sim issue #561)
 
 > [!IMPORTANT]
-> **Kernel 11 of the trace, `nvjet_sm90_tst_64x8_64x16_4x2_h_bz_splitK_TNT`, hangs the simulator.** It is the cuBLAS split-K GEMM that vLLM's down-projection selects for small-M shapes, so it recurs once per decode step and will affect anyone replaying an LLM trace on the Hopper model. The report, with the evidence below and the failing kernel's trace offered for reproduction, is filed as **[accel-sim/accel-sim-framework#561](https://github.com/accel-sim/accel-sim-framework/issues/561)**. Follow that thread for the upstream response; this section records what was established locally.
+> **Resolved upstream, fix carried here.** With stock v2.0.0, kernel 11 of the first trace, `nvjet_sm90_tst_64x8_64x16_4x2_h_bz_splitK_TNT`, hung the simulator. It is the cuBLAS split-K GEMM that the down-projection selects for small-M shapes, so it recurs in every pass and affects anyone replaying an LLM trace on the Hopper model. Filed as **[accel-sim/accel-sim-framework#561](https://github.com/accel-sim/accel-sim-framework/issues/561)**; within a day the maintainers found the cause, in the **trace post-processor, not the simulator**, and posted a patch. Until it lands in a release, [`patches/issue561-fix-trywait-drop.patch`](patches/issue561-fix-trywait-drop.patch) + `04_h100_trace.sh -P` apply it.
 
-**Symptom.** After ~100k cycles GPGPU-Sim reports `ERROR ** deadlock detected: last writeback core 84 @ gpu_sim_cycle 10432 … (89568 cycles ago)` with every core listed as no longer committing. Just before it, once per SM, the trace-driven frontend prints `WARNING: sid N warp 8 pc 0x3410 EXIT in replay region - overriding mask …`. The full stdout is in [`results/qwen25-0.5b__layer12/simulator_stdout_with_deadlock.txt.gz`](results/qwen25-0.5b__layer12/simulator_stdout_with_deadlock.txt.gz).
+**Symptom.** After ~100k cycles GPGPU-Sim reports `ERROR ** deadlock detected: last writeback core 84 @ gpu_sim_cycle 10432 … (89568 cycles ago)` with every core listed as no longer committing. With `-gpgpu_deadlock_detect 0` the kernel spins at 100% CPU with no progress: a genuine hang. Full stdout: [`results/qwen25-0.5b__layer12/simulator_stdout_with_deadlock.txt.gz`](results/qwen25-0.5b__layer12/simulator_stdout_with_deadlock.txt.gz).
 
-**What the kernel looks like.** Grid 8×12, 384 threads per CTA, 168 registers, 164 KB shared memory, a warp-specialised Hopper GEMM. Decoding its trace with `traceDsm` shows 3,921 `REPLAY_START` markers but only 2,769 `REPLAY_END`; the difference, 1,152, is exactly the warp count (96 CTAs × 12 warps): every warp's final spin region runs into its `EXIT`. The regions are `mbarrier` waits:
+**Root cause** (found by [@JRPan](https://github.com/JRPan) from the attached kernel trace). `post-traces-processing` has a pass, `drop_unused_trywaits`, that deletes any `SYNCS.PHASECHK.*.TRYWAIT` whose `mbarrier` nothing in the kernel ever `ARRIVE`s on, since such a wait could never be satisfied. To decide that, it collected the `mbarrier` address of every `ARRIVE`, but only the **first** address on each trace line. Multi-lane `ARRIVE` lines are stored as a base address plus per-lane deltas, and in this kernel rank 4's mbarriers (`0x4028400`–`0x4028478`) only ever appear as a delta lane, never as a base. The pass concluded nobody arrives on them and deleted all 28 `TRYWAIT`s of rank 4's tile-loader warp in every cluster, 336 in total. Those waits are the loader's flow control: without them it runs ahead, the mbarrier's pending-arrival count underflows, the phase never advances, the compute warps block forever and the cluster stalls.
 
-```
-REPLAY_START
-SYNCS.PHASECHK.TRANS64.TRYWAIT R0 R4 …
-NANOSLEEP.SYNCS 50000
-SYNCS.PHASECHK.TRANS64 R0 R4 …
-BRA …
-REPLAY_END
-```
+The evidence was in this repo's own tracing log all along: the post-processor prints `Dropped N TRYWAIT(s) on mbarrier 0x40284xx (no ARRIVE in this kernel)`, and for kernel 2264 those lines add up to exactly 336.
 
-**Experiments that narrow it down.**
+**The fix** decodes the address of every active lane, in all three address formats, instead of just the first. Upstream is also making the simulator fail loudly on an mbarrier arrival-count underflow instead of hanging.
+
+**Verification here.** Post-processing can only be redone from raw traces, and the first rental's had been deleted, so the layer was re-traced on a second H100 with the patch applied:
+
+| | stock v2.0.0 post-processor | patched |
+|---|---|---|
+| `TRYWAIT`s dropped on `0x40284xx` in the split-K GEMM | 336 | 0 |
+| kernel 11 (down-projection split-K GEMM) | deadlock at ~10.5k cycles | completes in 10,684 cycles |
+| all 16 split-K kernels (8 GEMMs + 8 `splitKreduce`) | not reached | complete |
+| kernels simulated | 10 of 96 | **96 of 96** |
+
+Two caveats. The second H100 was a PCIe card (the first was SXM5) and cuBLAS chose the `64x16_64x16_4x1_v` split-K variant there rather than `64x8_64x16_4x2_h`, so the re-trace exercises the same kernel family and the same post-processing path but not the byte-identical kernel; the maintainers verified the fix on the original one (their patched copy completes in 10,856 cycles). And the patched tool still reports dropped `TRYWAIT` lanes for other mbarriers (296 log lines, see [`post_processing.log`](results/qwen25-0.5b__layer12-fixed/post_processing.log)); everything simulates, and the question of whether all of those are expected is with upstream.
+
+<details>
+<summary><b>What was established locally before the upstream diagnosis</b></summary>
+
+Decoding the failing kernel with `traceDsm` (grid 8×12, 384 threads per CTA, 168 registers, 164 KB shared memory) shows 3,921 `REPLAY_START` markers but only 2,769 `REPLAY_END`; the difference, 1,152, is exactly the warp count (96 CTAs × 12 warps): every warp's final spin region runs into its `EXIT`, which is what produces the `EXIT in replay region` warnings. That looked like the cause and was not:
 
 | experiment | result | conclusion |
 |---|---|---|
@@ -263,11 +293,10 @@ REPLAY_END
 | Same kernel with every replay marker stripped (per-warp `insts =` counts recomputed), replayed as plain `.traceg` | identical deadlock at the same cycle (`last writeback core 21 @ gpu_sim_cycle 10492`) | the replay-region logic is not the cause; warps stall on the `TRYWAIT` itself |
 | The replay-loop abort path (`handle_replay_region_exit`, 100 iterations) | its message never appears | warps are not looping in the region |
 
-So the `mbarrier` phase the consumer warps wait on never completes in the simulator's model for this kernel, plausibly because the producer warps leave through the overridden-mask `EXIT` path first. That is inside the simulator's Hopper synchronisation model and not something the trace or the scripts can route around.
+These correctly ruled out the replay machinery and pointed at the `mbarrier` waits, but attributed the stall to the simulator's synchronisation model. The missing piece, that one rank's waits were absent from the trace, only shows when comparing per-rank instruction counts (`insts = 1090` vs `1118`), which is how upstream found it. The report as filed is in [`docs/upstream-issue-561-splitK-deadlock.md`](docs/upstream-issue-561-splitK-deadlock.md).
+</details>
 
-**Everything else in the layer simulates.** FlashAttention-3 with its own `mbarrier` pipelines, the non-split-K `nvjet_sm90` GEMMs, and all the vLLM kernels run to completion, which is why the prefill pass above is complete.
-
-**If you hit this too.** Options, roughly in order of effort: (1) follow #561 and pin `GPGPUSIM_BRANCH` in `01_build_and_traces.sh` to the fixing commit when it lands; (2) simulate the other kernels with the launcher's `--per-kernel` mode and exclude the split-K instances; (3) change the GEMM shape so cuBLAS does not choose split-K, for example a larger batch, and re-trace.
+**Lesson for anyone tracing.** Keep the raw `kernel-*.trace` files. Post-processing is lossy and can only be redone from them; `04_h100_trace.sh` now writes them to a second archive (`<name>.raw.tar`) instead of deleting them.
 
 ---
 
@@ -287,7 +316,7 @@ The per-kernel AccelWattch report labels its component fields with a trailing co
 
 ## Upstream problems the scripts work around
 
-Everything below was verified against the v2.0.0 tag and the `ubuntu-24.04-cuda-12.8` image on 16–17 September 2026.
+Everything below was verified against the v2.0.0 tag and the `ubuntu-24.04-cuda-12.8` image on 16–18 September 2026.
 
 | problem | where | workaround |
 |---|---|---|
@@ -299,6 +328,8 @@ Everything below was verified against the v2.0.0 tag and the `ubuntu-24.04-cuda-
 | The local process manager launches one job per CPU regardless of memory; each trace-driven job needs ~4 GB | launcher | job limit derived from the container's cgroup memory limit |
 | `get-accel-sim-traces.py` with no `-a` downloads the whole catalogue (~160 GB) | traces | never called without a selection |
 | Stats CSV headers are regexes with trailing commas | collection | parser written from the printer's source |
+| v2.0.0's trace post-processor deletes `TRYWAIT`s it wrongly believes unused (multi-lane `ARRIVE` addresses), deadlocking cuBLAS split-K GEMMs ([#561](https://github.com/accel-sim/accel-sim-framework/issues/561)) | tracing | upstream patch in `patches/`, applied by `04_h100_trace.sh -P` before the tracer build |
+| Post-processing can only be redone from the raw traces, which die with the rental unless copied | tracing | `04_h100_trace.sh` keeps them in `<name>.raw.tar` next to the `.tgz` |
 | `docker run -it` fails without a TTY; the tracer script must self-copy with an absolute path; the `ubuntu` user needs the `docker` group | rental | all handled in `04_h100_trace.sh` |
 
 ---
@@ -312,14 +343,16 @@ Everything below was verified against the v2.0.0 tag and the `ubuntu-24.04-cuda-
 | V100 smoke run (10 apps), each of three configs | ~10 min each | 0 |
 | H100 rental: image pull, tracer build, spinlock passes, trace, package | ~40 min | ≈ $6 (2× H100 SXM5 at $8.38/h; single H100s were sold out) |
 | LLM-layer replay to the deadlock | ~3 min | 0 |
+| Second H100 rental: re-trace with the upstream fix (boot ~7 min unbilled, run ~20 min) | ~30 min | ≈ $1.50 (1× H100 PCIe at $3.29/h) |
+| Full LLM-layer replay, 96 kernels with power, under Rosetta | ~18 min | 0 |
 
 ---
 
 ## Next steps
 
-- Track [#561](https://github.com/accel-sim/accel-sim-framework/issues/561); re-run the existing trace when the `mbarrier` model is fixed. No new rental needed.
-- Per-kernel simulation of the remaining 85 kernels to get decode-phase numbers now, with the split-K instances excluded and documented.
-- Re-trace at larger batch sizes (different cuBLAS kernel selection) and for prefill vs decode separately, which is the actual study this pipeline was built for: energy per token, attention vs MLP share, H100 vs H200 configs.
+- Drop the `-P` patch once the [#561](https://github.com/accel-sim/accel-sim-framework/issues/561) fix is in an Accel-Sim release, and pin to that release.
+- Re-trace at larger batch sizes and longer prompts, where the block stops being latency-bound and cuBLAS selects different kernels, which is the actual study this pipeline was built for: energy per token, attention vs MLP share, prefill vs decode, H100 vs H200 configs.
+- Extrapolate from one block to the whole model (24 identical blocks plus embedding and LM head) and compare against measured vLLM token latency on the same GPU.
 - Calibrate AccelWattch for Hopper with measured power, if a profiling run on real hardware becomes available.
 
 ---
