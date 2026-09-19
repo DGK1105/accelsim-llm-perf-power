@@ -1,0 +1,16 @@
+# Written by 05_sensitivity.sh. One parameter each, relative to SM90_H100/gpgpusim.config
+# (kernel_launch_latency 3000, dram_latency 194, l2_rop_latency 237, l1_latency 41, smem_latency 29).
+LAUNCH0:
+    extra_params: "-gpgpu_kernel_launch_latency 0"
+LAUNCH1500:
+    extra_params: "-gpgpu_kernel_launch_latency 1500"
+DRAMLAT2X:
+    extra_params: "-dram_latency 388"
+DRAMLATHALF:
+    extra_params: "-dram_latency 97"
+L2LAT2X:
+    extra_params: "-gpgpu_l2_rop_latency 474"
+L1LAT2X:
+    extra_params: "-gpgpu_l1_latency 82"
+SMEMLAT2X:
+    extra_params: "-gpgpu_smem_latency 58"

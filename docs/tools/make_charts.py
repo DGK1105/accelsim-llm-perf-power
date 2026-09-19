@@ -135,8 +135,32 @@ def chart_strip(t, name):
     ax.add_patch(Rectangle((29, ly), 0.9, 0.4, color=t["neutral"], linewidth=0)); ax.text(30.3, ly + 0.2, "not reached", color=t["text2"], fontsize=9, va="center")
     fig.tight_layout(); fig.savefig(os.path.join(OUT, f"{name}-{tname}.png"), facecolor=t["surface"]); plt.close(fig)
 
+# ---------------------------------------------------------------- chart 4: one-at-a-time sensitivity of the H100 model
+SWEEP = [("H100-SASS-LAUNCH0", "kernel launch latency 3000 → 0"), ("H100-SASS-LAUNCH1500", "kernel launch latency 3000 → 1500"),
+         ("H200-SASS", "H200 config (48 memory chips vs 40)"), ("H100-SASS-DRAMLATHALF", "DRAM latency × ½"),
+         ("H100-SASS-L1LAT2X", "L1 cache latency × 2"), ("H100-SASS-SMEMLAT2X", "shared-memory latency × 2"),
+         ("H100-SASS-DRAMLAT2X", "DRAM latency × 2"), ("H100-SASS-L2LAT2X", "L2 cache latency × 2")]
+
+def chart_sensitivity(t, name):
+    rows = {r["config"]: r for r in csv.DictReader(open(os.path.join(ROOT, "results", "sensitivity-sweep", "sensitivity.csv")))}
+    b = rows["H100-SASS"]
+    fig, (a1, a2) = fig_ax(11, 4.4, t, 2, [1, 1]); n = len(SWEEP); ys = list(range(n))[::-1]
+    for ax, col, title in ((a1, "prefill", "Prefill pass (11 tokens)"), (a2, "decode", "Decode pass (1 token)")):
+        style(ax, t); vals = [(float(rows[c][col]) / float(b[col]) - 1) * 100 for c, _ in SWEEP]
+        for y, v in zip(ys, vals):
+            ax.add_patch(Rectangle((min(0, v), y - 0.25), abs(v), 0.5, color=t["s1"], linewidth=0))
+            ax.text(v + (0.9 if v >= 0 else -0.9), y, f"{v:+.1f}%", va="center", ha="left" if v >= 0 else "right", color=t["text2"], fontsize=9)
+        ax.axvline(0, color=t["text2"], linewidth=1); ax.set_xlim(-52, 22); ax.set_ylim(-0.7, n - 0.3); ax.set_yticks(ys)
+        ax.set_title(title, loc="left", color=t["text"], fontsize=11, pad=10)
+        ax.set_xlabel("change in simulated cycles vs the H100 baseline", color=t["text2"], fontsize=9)
+    a1.set_yticklabels([l for _, l in SWEEP], color=t["text"]); a2.set_yticklabels([""] * n)
+    fig.suptitle("One parameter changed at a time, Qwen2.5-0.5B decoder layer on the H100 model (baseline: 89,514 prefill / 80,490 decode cycles)",
+                 x=0.01, ha="left", color=t["text2"], fontsize=9, y=0.995)
+    fig.tight_layout(); fig.savefig(os.path.join(OUT, f"{name}-{tname}.png"), facecolor=t["surface"]); plt.close(fig)
+
+
 for tname, t in THEMES.items():
     plt.rcParams.update({"font.family": "DejaVu Sans", "text.color": t["text"], "axes.labelcolor": t["text2"],
                          "xtick.color": t["text2"], "ytick.color": t["text2"]})
-    chart_v100_h100(t, "v100-vs-h100"); chart_llm(t, "llm-layer-kernels"); chart_strip(t, "llm-layer-kernel-strip")
+    chart_v100_h100(t, "v100-vs-h100"); chart_llm(t, "llm-layer-kernels"); chart_strip(t, "llm-layer-kernel-strip"); chart_sensitivity(t, "sensitivity")
 print(sorted(os.listdir(OUT)))

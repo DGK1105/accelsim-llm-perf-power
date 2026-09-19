@@ -17,9 +17,10 @@ run end to end on an Apple Silicon Mac, with two short H100 rentals for tracing.
 
 ## TL;DR
 
-- **A reproducible pipeline** (five scripts) that builds Accel-Sim 2.0 in a container on a Mac, replays published traces, traces one transformer layer of a real LLM on a rented H100, and replays it on the H100 model with power. Every upstream problem hit along the way is worked around in the scripts and documented below.
+- **A reproducible pipeline** (six scripts) that builds Accel-Sim 2.0 in a container on a Mac, replays published traces, traces one transformer layer of a real LLM on a rented H100, and replays it on the H100 model with power. Every upstream problem hit along the way is worked around in the scripts and documented below.
 - **Validated on published Tesla V100 traces**: 10 benchmarks, all clean, cycle counts identical with and without the power model; the H100 model replays the same traces in **1.07× to 1.43×** fewer cycles.
-- **A real H100 trace of a decoder layer** of Qwen2.5-0.5B under vLLM: 96 kernels, one prefill pass plus 7 decode passes of 12 kernels each. **All 96 simulate to completion** on the H100 model with power: **645,976 cycles, 263.9 M instructions, 81.6 W** average. A decode pass costs **79.5k cycles**, only 11% less than the 11-token prefill pass (89.5k): at this size the block is launch- and latency-bound, not compute-bound.
+- **A real H100 trace of a decoder layer** of Qwen2.5-0.5B under vLLM: 96 kernels, one prefill pass plus 7 decode passes of 12 kernels each. **All 96 simulate to completion** on the H100 model with power: **645,976 cycles, 263.9 M instructions, 81.6 W** average. A decode pass costs **79.5k cycles**, only 11% less than the 11-token prefill pass (89.5k): at this size the block is bound by per-kernel launch overhead, not by compute.
+- **A sensitivity sweep of the H100 model** on that layer, one parameter at a time: removing the model's fixed 3,000-cycle **kernel launch latency cuts the block's time by 42%**, while halving or doubling any memory latency moves it by −2% to +11%. At this model size the GPU's memory hierarchy barely matters; the number of kernels launched does.
 - **An upstream bug found, reported and fixed**: the first replay deadlocked on kernel 11, a cuBLAS **split-K GEMM** (`nvjet_sm90_*_splitK`). Reported as [accel-sim/accel-sim-framework#561](https://github.com/accel-sim/accel-sim-framework/issues/561); the maintainers traced it to the **trace post-processor wrongly deleting `TRYWAIT` instructions** and supplied a patch, which this repo carries in [`patches/`](patches/) and `04_h100_trace.sh -P` applies. See [the section below](#the-split-k-deadlock-accel-sim-issue-561).
 
 > [!NOTE]
@@ -37,6 +38,7 @@ run end to end on an Apple Silicon Mac, with two short H100 rentals for tracing.
   - [1. Toolchain validation on published V100 traces](#1-toolchain-validation-on-published-v100-traces)
   - [2. H100 model vs V100 model on the same traces](#2-h100-model-vs-v100-model-on-the-same-traces)
   - [3. A real LLM layer on the H100 model](#3-a-real-llm-layer-on-the-h100-model)
+  - [4. Which hardware parameter does the block care about?](#4-which-hardware-parameter-does-the-block-care-about)
 - [The split-K deadlock (Accel-Sim issue #561)](#the-split-k-deadlock-accel-sim-issue-561)
 - [Power model caveat](#power-model-caveat)
 - [Upstream problems the scripts work around](#upstream-problems-the-scripts-work-around)
@@ -85,6 +87,7 @@ Each script is idempotent and re-runnable. Bind mounts make everything persisten
 | `01_build_and_traces.sh` | container | Installs missing build deps, builds with cmake (LTO off), pins GPGPU-Sim, copies power XMLs into the H100 config, writes the `llm_layer` app suite, downloads the V100 smoke traces | 15–25 min first time |
 | `02_run_sim.sh` | container | Validates benchmark and config names, applies the job-template revert, sizes concurrency from the memory limit, launches, monitors, collects stats and power reports | minutes to hours |
 | `03_collect.py` | anywhere | Parses the stats tool's CSV blocks and the AccelWattch reports into `perf_tidy.csv`, `power_tidy.csv`, `summary.csv` | seconds |
+| `05_sensitivity.sh` | container | Defines one-parameter config variants, builds a 24-kernel subset of the LLM trace (prefill + one decode pass), replays it under each variant and tabulates the change | ~3.5 min per variant |
 | `04_h100_trace.sh` | GPU host | Pulls the upstream vLLM image, optionally applies a patch to the checkout (`-P`), builds the NVBit tracer, runs spinlock detection, traces one named layer, post-processes to `.tracez`, tars it and keeps the raw traces in a second archive | ~20 min incl. pull |
 
 ---
@@ -93,7 +96,7 @@ Each script is idempotent and re-runnable. Bind mounts make everything persisten
 
 ```
 .
-├── 00_mac_setup.sh … 04_h100_trace.sh   the pipeline
+├── 00_mac_setup.sh … 05_sensitivity.sh  the pipeline
 ├── 03_collect.py
 ├── results/
 │   ├── smoke/                 rodinia_2.0-ft V100 traces on QV100-SASS
@@ -108,6 +111,7 @@ Each script is idempotent and re-runnable. Bind mounts make everything persisten
 │   │   └── kernelslist.g                       the 96 kernel trace files, in order
 │   └── qwen25-0.5b__layer12/         the first trace (unpatched post-processor): 10 kernels, then the deadlock
 │       └── simulator_stdout_with_deadlock.txt.gz, …
+│   └── sensitivity-sweep/            sensitivity.csv (per-kernel cycles for every variant) + the variant definitions
 ├── patches/
 │   └── issue561-fix-trywait-drop.patch         upstream fix for the post-processor (from #561)
 └── docs/
@@ -140,6 +144,7 @@ chmod +x *.sh
 ./02_run_sim.sh rodinia_2.0-ft /traces/rodinia_2.0-ft/9.1 QV100-SASS-Accelwattch_SASS_SIM smoke-power
 ./02_run_sim.sh rodinia_2.0-ft /traces/rodinia_2.0-ft/9.1 H100-SASS-Accelwattch_SASS_SIM h100-power
 python3 03_collect.py /results/h100-power
+./05_sensitivity.sh                # after the LLM trace is in /traces: 9 config variants, ~35 min
 ```
 </details>
 
@@ -251,10 +256,40 @@ The V100 traces replay on the H100 model too; traces are instruction-level and t
 
 What the full result shows:
 
-- **Decode is barely cheaper than prefill.** One token costs 79.5k cycles, eleven tokens 89.5k. Nine of the twelve kernels take the same time either way (within 6%), because at this model size they are bound by launch and synchronisation latency rather than arithmetic. Only FlashAttention-3 (−32%), the gate/up GEMM (−20%) and the down GEMM (−14%) get faster with fewer tokens. This is the simulator's view of why small-batch decode wastes a big GPU.
+- **Decode is barely cheaper than prefill.** One token costs 79.5k cycles, eleven tokens 89.5k. Nine of the twelve kernels take the same time either way (within 6%), because at this model size they are bound by fixed per-kernel cost rather than arithmetic. Most of that cost is explicit in the model: `gpgpusim.config` sets `-gpgpu_kernel_launch_latency 3000`, so 12 kernels pay 36,000 cycles per pass before doing any work (the `fill` kernel is 3,348 cycles for 2,950 instructions). [Section 4](#4-which-hardware-parameter-does-the-block-care-about) measures it. Only FlashAttention-3 (−32%), the gate/up GEMM (−20%) and the down GEMM (−14%) get faster with fewer tokens. This is the simulator's view of why small-batch decode wastes a big GPU.
 - **The five GEMM-path kernels are half the block** (49% of cycles in both phases); the attention path (RoPE, KV write, FlashAttention-3, fill) is 30 to 33%; norms and activation the remaining 19 to 21%.
 - **The MLP GEMMs are the power peaks**, 95 to 109 W, and the gate/up GEMM draws *more* in decode (108.9 W vs 98.7 W) while taking fewer cycles, the signature of a denser kernel variant. Everything that is not a GEMM sits within 6 W of the ~70 W floor, the expected shape for a tensor-core-bound block and a sanity check on the activity-factor model.
-- **The first ten prefill kernels reproduce the first trace**, taken on a different H100 two days earlier, within 0.5% on cycles for nine of them (the gate/up GEMM differs by 12%), so the pipeline is repeatable across hosts.
+- **The first ten prefill kernels reproduce the first trace**, taken on a different H100 two days earlier, within 0.5% on cycles for nine of them, so the pipeline is repeatable across hosts. The exception is the gate/up GEMM (16,723 vs 14,706 cycles, 12%), and it is instructive: the two traces of that kernel are the same program (445,676 vs 445,702 instructions, same grid, same post-processing), but it is the most memory-heavy kernel in the block (it reads the ~17 MB gate/up weight) and the two runs allocated memory at different base addresses. The simulator maps address bits onto DRAM chips and L2 sets, so the layout changed the contention pattern (DRAM-full stalls +41%, L2 reservation failures +34% in the second run). Memory-bound kernels in this model are sensitive to allocation layout; the latency-bound ones are not.
+
+### 4. Which hardware parameter does the block care about?
+
+A simulator's real use is asking "what if". `05_sensitivity.sh` replays the prefill pass and the first decode pass (24 kernels; the seven decode passes agree within 1%, and this subset reproduces the full run's 89,514 / 80,490 cycles exactly) under nine configs that each change **one** parameter of the H100 model. Every run's option dump was checked to confirm the override took effect.
+
+<img alt="Two panels of horizontal bars, prefill and decode, showing percent change in simulated cycles for eight config variants. Removing kernel launch latency: -40% prefill, -45% decode. Halving it: about -20% and -22%. H200, DRAM latency halved, L1 and shared-memory latency doubled: all within about 3%. DRAM latency doubled: +10.7% prefill but +1.6% decode. L2 latency doubled: +10.7% prefill, +11.6% decode." src="docs/img/sensitivity-light.png#gh-light-mode-only" width="100%">
+<img alt="Two panels of horizontal bars, prefill and decode, showing percent change in simulated cycles for eight config variants. Removing kernel launch latency: -40% prefill, -45% decode. Halving it: about -20% and -22%. H200, DRAM latency halved, L1 and shared-memory latency doubled: all within about 3%. DRAM latency doubled: +10.7% prefill but +1.6% decode. L2 latency doubled: +10.7% prefill, +11.6% decode." src="docs/img/sensitivity-dark.png#gh-dark-mode-only" width="100%">
+
+| variant (one parameter vs `H100-SASS`) | prefill cycles | decode cycles | total | change |
+|---|---:|---:|---:|---:|
+| baseline | 89,514 | 80,490 | 170,004 | |
+| kernel launch latency 3000 → 0 | 53,580 | 44,606 | 98,186 | **−42.2%** |
+| kernel launch latency 3000 → 1500 | 71,404 | 62,500 | 133,904 | −21.2% |
+| `H200-SASS` (48 memory chips instead of 40; the only difference from H100 in the shipped configs) | 86,835 | 78,783 | 165,618 | −2.6% |
+| DRAM latency × ½ | 87,694 | 79,951 | 167,645 | −1.4% |
+| L1 cache latency × 2 | 90,938 | 81,716 | 172,654 | +1.6% |
+| shared-memory latency × 2 | 90,992 | 82,258 | 173,250 | +1.9% |
+| DRAM latency × 2 | 99,091 | 81,804 | 180,895 | +6.4% |
+| L2 cache latency × 2 | 99,081 | 89,846 | 188,927 | **+11.1%** |
+
+<sup>Full per-kernel data: [`results/sensitivity-sweep/sensitivity.csv`](results/sensitivity-sweep/sensitivity.csv). Performance only, no power model.</sup>
+
+- **Launch overhead is the bottleneck, and it is linear.** Zeroing the 3,000-cycle launch constant removes 42% of the block's time; halving it removes exactly half of that. No memory parameter comes close. This is the quantitative case for CUDA graphs and kernel fusion on small models: the win comes from launching fewer kernels, not from a faster memory system. (The trace was necessarily taken in eager mode, with CUDA graphs off, because the per-layer tracing hooks need it; the measured share is therefore an upper bound for a graph-captured deployment.)
+- **Even with free launches, decode is 83% of prefill** (44,606 vs 53,580), so the kernels themselves also scale poorly with token count at this size. Launch cost is the largest single term, not the whole story.
+- **The block is not DRAM-bound at the baseline**: halving DRAM latency buys 1.4%. Doubling it costs prefill 10.7% but decode only 1.6%, almost all of it in the prefill gate/up GEMM (14,706 → 18,659 cycles, +27%), the one kernel that streams a large weight with 11 rows of work behind it.
+- **L2 latency is the memory parameter that matters** (+11% in both phases): at these sizes the working set lives in the L2, so its latency is on every kernel's path.
+- **H200 vs H100 is a 2.6% story here**, all of it from the two big GEMMs (gate/up: −9.6% prefill, −6.7% decode). A 0.5B model at batch 1 does not exercise what an H200 adds.
+
+> [!NOTE]
+> Memory-latency variants make the simulator itself use more host memory (more requests in flight): three runs were OOM-killed under the container's default 6.2 GB cap and passed at 7.7 GB (peak 7.9 GB). `docker update --memory 7700m --memory-swap 7700m accelsim` is enough on an 8 GB Docker VM.
 
 ---
 
@@ -345,13 +380,14 @@ Everything below was verified against the v2.0.0 tag and the `ubuntu-24.04-cuda-
 | LLM-layer replay to the deadlock | ~3 min | 0 |
 | Second H100 rental: re-trace with the upstream fix (boot ~7 min unbilled, run ~20 min) | ~30 min | ≈ $1.50 (1× H100 PCIe at $3.29/h) |
 | Full LLM-layer replay, 96 kernels with power, under Rosetta | ~18 min | 0 |
+| Sensitivity sweep, 9 variants × 24 kernels | ~35 min | 0 |
 
 ---
 
 ## Next steps
 
 - Drop the `-P` patch once the [#561](https://github.com/accel-sim/accel-sim-framework/issues/561) fix is in an Accel-Sim release, and pin to that release.
-- Re-trace at larger batch sizes and longer prompts, where the block stops being latency-bound and cuBLAS selects different kernels, which is the actual study this pipeline was built for: energy per token, attention vs MLP share, prefill vs decode, H100 vs H200 configs.
+- Re-trace at larger batch sizes and longer prompts, where the block stops being launch-bound and cuBLAS selects different kernels, then repeat the sensitivity sweep there: the memory parameters and the H200 config should start to matter, and the crossover point is the interesting result.
 - Extrapolate from one block to the whole model (24 identical blocks plus embedding and LM head) and compare against measured vLLM token latency on the same GPU.
 - Calibrate AccelWattch for Hopper with measured power, if a profiling run on real hardware becomes available.
 

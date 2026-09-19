@@ -7,3 +7,5 @@ results/*/stdout__*.txt
 results/*/per_kernel_instance_stats.csv
 # traces are distributed as a release asset, not committed
 traces/
+# personal study material, kept local
+docs/study-guide/
